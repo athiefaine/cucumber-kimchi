@@ -1,21 +1,21 @@
 package restaurant;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class Menu {
 
-    private final HashMap<String, BigDecimal> dishToPrice = new HashMap<>();
+    private final HashMap<String, Amount> dishToPrice = new HashMap<>();
 
     static Menu createMenu() {
         return new Menu();
     }
 
-    public void addDish(String dishName, BigDecimal dishPrice) {
+    public void addDish(String dishName, Amount dishPrice) {
         dishToPrice.put(dishName, dishPrice);
     }
 
-    public BigDecimal findPriceForDish(String dishName) {
+    public Amount findPriceForDish(String dishName) {
         return dishToPrice.get(dishName);
     }
+
 }

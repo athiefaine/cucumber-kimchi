@@ -7,29 +7,27 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 
-import java.math.BigDecimal;
-
 public class RestaurantSteps {
 
     private final Menu menu = Menu.createMenu();
 
     private final Order order = Order.createOrder();
 
-    private BigDecimal billingTotal;
+    private Amount billingTotal;
+
 
     @Given("the menu contains the following dishes")
     public void theMenuContainsTheFollowingDishes(DataTable dataTable) {
         dataTable.asMaps().forEach(
                 row -> menu.addDish(
                         row.get("name"),
-                        new BigDecimal(row.get("price"))));
+                        new Amount(row.get("price"))));
     }
 
     @And("the customer ordered {int} {string}")
     public void theCustomerOrdered(int quantity, String dish) {
         for (int i = 0; i < quantity; i++) {
             order.addDish(dish);
-
         }
     }
 
@@ -40,6 +38,6 @@ public class RestaurantSteps {
 
     @Then("the bill amount should be {string}")
     public void theBillAmountShouldBe(String expectedTotal) {
-        Assertions.assertThat(billingTotal).isEqualTo(new BigDecimal(expectedTotal));
+        Assertions.assertThat(billingTotal).isEqualTo(new Amount(expectedTotal));
     }
 }

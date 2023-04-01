@@ -1,14 +1,12 @@
 package restaurant;
 
-import java.math.BigDecimal;
-
 public class CashRegister {
-    static BigDecimal computeBill(Order order, Menu menu) {
-        BigDecimal billingTotal = BigDecimal.ZERO;
+    public static Amount computeBill(Order order, Menu menu) {
+        Amount totalAmount = Amount.nothing();
         for (String orderedDish : order.getOrderedDishes()) {
-            billingTotal = billingTotal.add(
-                    menu.findPriceForDish(orderedDish));
+            totalAmount = totalAmount.add(menu.findPriceForDish(orderedDish));
         }
-        return billingTotal;
+        return totalAmount;
     }
+
 }
