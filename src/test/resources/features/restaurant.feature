@@ -1,5 +1,5 @@
 Feature: Order billing computation
-	To allow a customer to order some dishes.
+	To allow a customer to order some dishes and compute his/her bill.
 
 	Scenario: Order some dishes an compute the order amount
 		Given the menu contains the following dishes
