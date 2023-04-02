@@ -20,4 +20,16 @@ public class AmountTest {
         assertThat(amountAddition).isEqualTo(amount);
     }
 
+    @Test
+    public void subtract_two_amounts() {
+        Amount amountAddition = new Amount("25.99").subtract(new Amount("10.99"));
+        assertThat(amountAddition).isEqualTo(new Amount("15.00"));
+    }
+
+    @Test
+    public void multiply_amount() {
+        Amount amountAddition = new Amount("25.99").multiply(3);
+        assertThat(amountAddition).isEqualTo(new Amount("77.97"));
+    }
+
 }

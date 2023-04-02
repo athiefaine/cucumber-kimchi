@@ -26,6 +26,14 @@ public class Amount {
         return new Amount(value.add(other.value));
     }
 
+    Amount subtract(Amount other) {
+        return new Amount(value.subtract(other.value));
+    }
+
+    Amount multiply(long quantity) {
+        return new Amount(value.multiply(new BigDecimal(quantity)));
+    }
+
     public Amount apply(Rate rate) {
         return new Amount(this.value.multiply(rate.asBigDecimal()));
     }
