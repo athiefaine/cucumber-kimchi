@@ -22,3 +22,12 @@ Feature: Order billing computation
 		Given the customer ordered 1 "okonomiyaki"
 		When the waiter computes the bill
 		Then the bill amount should be "17.00"
+
+	Scenario: Order more than 10 dishes, get 10% voucher
+		Given the customer ordered 2 "gyoza"
+		And  the customer ordered 3 "kimchi"
+		And  the customer ordered 1 "okonomiyaki"
+		And  the customer ordered 2 "sukiyaki"
+		And  the customer ordered 3 "yakisoba"
+		When the waiter computes the bill
+		Then the bill amount should be "90.00"
