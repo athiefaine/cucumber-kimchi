@@ -18,4 +18,14 @@ public class Order {
     public List<String> getOrderedDishes() {
         return orderedDishes;
     }
+
+    public Rate discount() {
+        Rate discount;
+        if (getOrderedDishes().size() >= 10) {
+            discount = Rate.discountPercent("10");
+        } else {
+            discount = Rate.fully();
+        }
+        return discount;
+    }
 }
