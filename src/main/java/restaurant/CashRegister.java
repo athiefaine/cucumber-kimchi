@@ -2,15 +2,14 @@ package restaurant;
 
 public class CashRegister {
     public static Amount computeBill(Order order, Menu menu) {
-        long orderedGyoza = order.getOrderedDishes().stream()
-                .filter("gyoza"::equals)
-                .count();
-        long offeredGyoza = orderedGyoza / 3;
+        Amount offeredDishesAmount = order.offeredDishes().stream()
+                .map(menu::findPriceForDish)
+                .reduce(Amount.nothing(), Amount::add);
 
-        return order.getOrderedDishes().stream()
+        return order.orderedDishes().stream()
                 .map(menu::findPriceForDish)
                 .reduce(Amount.nothing(), Amount::add)
-                .subtract(menu.findPriceForDish("gyoza").multiply(offeredGyoza))
+                .subtract(offeredDishesAmount)
                 .apply(order.discount());
     }
 
